@@ -3,12 +3,12 @@ entries:
   mealie:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-03-23T12:54:49.98056-06:00"
+    created: "2025-03-23T12:56:58.049041-06:00"
     description: A Helm chart for Kubernetes
     digest: 9f1d15b6819d93a1efb1069f45ee5c2e75a42f8159d1ead27f6e8fb3eabca413
     name: mealie
     type: application
     urls:
-    - https://davebrown-exit107.github.com/charts-mt107-net/mealie-0.1.0.tgz
+    - https://davebrown-exit107.github.io/charts-mt107-net/mealie-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-23T12:54:49.979851-06:00"
+generated: "2025-03-23T12:56:58.048296-06:00"
