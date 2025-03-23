@@ -41,37 +41,26 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+securityContext:
+  allowPrivilegeEscalation: false
+#  capabilities:
+#    drop:
+#    - ALL
+#  # readOnlyRootFilesystem: true
+#  runAsNonRoot: true
+#  runAsUser: 911
+#  runAsGroup: 911
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
   type: ClusterIP
   protocol: TCP
-  port: 3000
+  port: 9000
   targetPort: http
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
   enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: mealie.mt107.net
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-    - secretName: mealie-tls
-      hosts:
-        - mealie.mt107.net
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -86,14 +75,12 @@ resources: {}
   #   memory: 128Mi
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
+#livenessProbe:
+#  tcpSocket:
+#    port: 9000
+#readinessProbe:
+#  tcpSocket:
+#    port: 9000
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
@@ -103,20 +90,9 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-volumes:
-  - name: api-data
-    apiVersion: v1
-    kind: PersistentVolume
-    spec:
-      capacity:
-        storage: 10Gi
-      volumeMode: Filesystem
-      accessModes:
-        - ReadWriteOnce
+volumes: []
   
-volumeMounts: 
-  - mountPath: /app/data/
-    name: api-data
+volumeMounts: []
 
 nodeSelector: {}
 
