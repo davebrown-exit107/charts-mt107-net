@@ -87,14 +87,33 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.volumeMounts }}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-      {{- with .Values.volumes }}
+           - mountPath: /app/nltk_data
+             name: nltk-data
+           - mountPath: /app/data
+             name: api-data
+           {{- if .Values.persistence.additionalMounts }}
+             {{- .Values.persistence.additionalMounts | toYaml | nindent 12 }}
+           {{- end }}
       volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        - name: api-data
+          {{- if .Values.persistence.api_data.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.api_data.existingClaim | default (printf "%s-api-data" (include "mealie.fullname" .)) }}
+          {{- else }}
+          emptyDir: { }
+          {{- end }}
+        - name: nltk-data
+          {{- if .Values.persistence.nltk_data.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.nltk_data.existingClaim | default (printf "%s-nltk-data" (include "mealie.fullname" .)) }}
+          {{- else }}
+          emptyDir: { }
+          {{- end }}
+          {{- if .Values.persistence.additionalVolumes }}
+            {{- .Values.persistence.additionalVolumes | toYaml | nindent 8}}
+          {{- end }}
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
