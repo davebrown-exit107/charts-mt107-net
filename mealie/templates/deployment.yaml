@@ -44,10 +44,37 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          {{- with .Values.env }}
-          env:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+          {{- with .Values.env -}}
+            {{- $result := list -}}
+            {{- range $k, $v := . -}}
+              {{- $name := $k -}}
+              {{- $value := $v -}}
+              {{- if kindIs "int" $name -}}
+                {{- $name = required "environment variables as a list of maps require a name field" $value.name -}}
+              {{- end -}}
+
+              {{- if kindIs "map" $value -}}
+                {{- if hasKey $value "value" -}}
+                  {{- $envValue := $value.value | toString -}}
+                  {{- $result = append $result (dict "name" $name "value" (tpl $envValue $)) -}}
+                {{- else if hasKey $value "valueFrom" -}}
+                  {{- $result = append $result (dict "name" $name "valueFrom" $value.valueFrom) -}}
+                {{- else -}}
+                  {{- $result = append $result (dict "name" $name "valueFrom" $value) -}}
+                {{- end -}}
+              {{- end -}}
+              {{- if not (kindIs "map" $value) -}}
+                {{- if kindIs "string" $value -}}
+                  {{- $result = append $result (dict "name" $name "value" (tpl $value $)) -}}
+                {{- else if or (kindIs "float64" $value) (kindIs "bool" $value) -}}
+                  {{- $result = append $result (dict "name" $name "value" ($value | toString)) -}}
+                {{- else -}}
+                  {{- $result = append $result (dict "name" $name "value" $value) -}}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+            {{- toYaml (dict "env" $result) | nindent 10 -}}
+          {{- end -}}
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
