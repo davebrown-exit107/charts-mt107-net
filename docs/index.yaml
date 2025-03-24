@@ -2,8 +2,18 @@ apiVersion: v1
 entries:
   mealie:
   - apiVersion: v2
+    appVersion: 2.8.0
+    created: "2025-03-23T23:06:20.91868-06:00"
+    description: Mealie is an intuitive and easy to use recipe management app.
+    digest: b574c9f1b7e3ae8271f09b39da2c52bbfd3643cc22c182b94b5feb2fd9f24670
+    name: mealie
+    type: application
+    urls:
+    - https://davebrown-exit107.github.io/charts-mt107-net/mealie-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-03-23T22:17:06.763834-06:00"
+    created: "2025-03-23T23:06:20.918361-06:00"
     description: A Helm chart for Kubernetes
     digest: 0650d720e5634ab7e8e864ffddb27daa432027d8640f8c0f8d7899c86b4374c7
     name: mealie
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://davebrown-exit107.github.io/charts-mt107-net/mealie-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-23T22:17:06.763069-06:00"
+generated: "2025-03-23T23:06:20.91747-06:00"
