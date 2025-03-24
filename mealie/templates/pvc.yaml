@@ -1,0 +1,33 @@
+{{- if and .Values.persistence.api_data.enabled (not .Values.persistence.api_data.existingClaim) }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: {{ include "mealie.fullname" . }}-api-data
+ labels:
+   {{- include "mealie.labels" . | nindent 4 }}  
+spec:
+ storageClassName: {{ .Values.persistence.api_data.storageClass }}
+ accessModes:
+   - {{ .Values.persistence.api_data.accessMode | quote }}
+ resources:
+   requests:
+     storage: {{ .Values.persistence.api_data.size | quote }}
+ {{- end }}
+{{- if and .Values.persistence.nltk_data.enabled (not .Values.persistence.nltk_data.existingClaim) }}
+--- 
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: {{ include "mealie.fullname" . }}-nltk-data
+ labels:
+   {{- include "mealie.labels" . | nindent 4 }}  
+spec:
+ storageClassName: {{ .Values.persistence.nltk_data.storageClass }}
+ accessModes:
+   - {{ .Values.persistence.nltk_data.accessMode | quote }}
+ resources:
+   requests:
+     storage: {{ .Values.persistence.nltk_data.size | quote }}
+ {{- end }}
+ 
