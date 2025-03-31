@@ -247,7 +247,7 @@
             "description": "Value of the environment variable"
           }
         },
-        "required": ["name", "value"],
+        "required": ["name"],
         "additionalProperties": true
       }
     },

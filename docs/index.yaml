@@ -22,9 +22,9 @@ entries:
         url: https://keys.openpgp.org/vks/v1/by-fingerprint/2956B7F7167769370C93730C7264DA7B85D08A37
     apiVersion: v2
     appVersion: 0.30.0
-    created: "2025-03-31T04:57:12.175057-06:00"
+    created: "2025-03-31T05:00:06.494045-06:00"
     description: Headlamp is an easy-to-use and extensible Kubernetes web UI.
-    digest: 35f4b830a28ce56e368b8e693eacfe03e25915150a4306387f558eed5aa81cee
+    digest: 260f995ffca1c581c17cf045ac64d5d76827223e027891e8bf747ff1c41adbf1
     home: https://headlamp.dev/
     icon: https://raw.githubusercontent.com/headlamp-k8s/headlamp/main/docs/headlamp_light.svg
     keywords:
@@ -51,7 +51,7 @@ entries:
   mealie:
   - apiVersion: v2
     appVersion: 2.8.0
-    created: "2025-03-31T04:57:12.175897-06:00"
+    created: "2025-03-31T05:00:06.494845-06:00"
     description: Mealie is an intuitive and easy to use recipe management app.
     digest: b574c9f1b7e3ae8271f09b39da2c52bbfd3643cc22c182b94b5feb2fd9f24670
     name: mealie
@@ -61,7 +61,7 @@ entries:
     version: 0.5.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-03-31T04:57:12.175494-06:00"
+    created: "2025-03-31T05:00:06.494464-06:00"
     description: A Helm chart for Kubernetes
     digest: 0650d720e5634ab7e8e864ffddb27daa432027d8640f8c0f8d7899c86b4374c7
     name: mealie
@@ -69,4 +69,4 @@ entries:
     urls:
     - https://davebrown-exit107.github.io/charts-mt107-net/mealie-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-31T04:57:12.173852-06:00"
+generated: "2025-03-31T05:00:06.493054-06:00"
