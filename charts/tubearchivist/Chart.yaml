@@ -4,3 +4,10 @@ description: Your self-hosted YouTube media server
 type: application
 version: 0.1.0
 appVersion: "v0.5.1"
+dependencies:
+  - name: redis
+    repository: https://charts.bitnami.com/bitnami
+    version: 17.7.3
+  - name: elasticsearch
+    repository: https://charts.bitnami.com/bitnami
+    version: 19.5.12
